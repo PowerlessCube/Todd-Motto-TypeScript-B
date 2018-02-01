@@ -1,19 +1,13 @@
-/* ReadOnly value*/
+// Static method - Called on the class.
+const date = Date.now();
+console.log(date);
 
-class Pizza {
-  public toppings: string[] = [];
-
-  // Readonly properties can only initialised at the declaration
-  constructor(readonly name: string) {}
-
-  addTopping(topping: string) {
-    this.toppings.push(topping);
+class Coupon {
+  // static properties that let us do stuff. handy for pure functions
+  static allowed = ["pepperoni", "Blazing Inferno"];
+  static create(percentage: number) {
+    return `PIZZA_RESTAURANT_${percentage}`;
   }
 }
 
-const pizza = new Pizza("Pepperoni");
-
-pizza.addTopping("pepperoni");
-
-console.log(pizza.name);
-console.log(pizza);
+console.log(Coupon.create(25));

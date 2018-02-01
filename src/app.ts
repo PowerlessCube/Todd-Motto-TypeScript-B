@@ -1,6 +1,19 @@
-// Tuple Types for arrays = different types contained within an array.
-// tuple - we tell typescript we have a strict structure for the array and it should adhear to those changes.
-let pizza: [string, number, boolean]; // restricting our datastructure to a tuple type, only if you are sure your data structure will look like this.
+/* ReadOnly value*/
 
-pizza = ['Pepperoni', 20, true]; // assignable
-// pizza = [true, 'Pepperoni', 20]; // breaks, doesn't adhear to tupal
+class Pizza {
+  public toppings: string[] = [];
+
+  // Readonly properties can only initialised at the declaration
+  constructor(readonly name: string) {}
+
+  addTopping(topping: string) {
+    this.toppings.push(topping);
+  }
+}
+
+const pizza = new Pizza("Pepperoni");
+
+pizza.addTopping("pepperoni");
+
+console.log(pizza.name);
+console.log(pizza);

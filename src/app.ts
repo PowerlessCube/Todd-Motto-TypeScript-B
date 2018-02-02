@@ -1,13 +1,19 @@
-// Static method - Called on the class.
-const date = Date.now();
-console.log(date);
+// Function overload allows us to
+function reverse(str: string): string; // overloads don't get compiled down.
+function reverse<T>(arr: T[]): T[];
 
-class Coupon {
-  // static properties that let us do stuff. handy for pure functions
-  static allowed = ["pepperoni", "Blazing Inferno"];
-  static create(percentage: number) {
-    return `PIZZA_RESTAURANT_${percentage}`;
+// Absolute implementation of the function
+function reverse<T>(stringOrArray: string | T[]): string | T[] {
+  if (typeof stringOrArray === "string") {
+    return stringOrArray
+      .split("")
+      .reverse()
+      .join("");
+  } else {
+    return stringOrArray.slice().reverse();
   }
 }
 
-console.log(Coupon.create(25));
+console.log(reverse("Pepperoni"));
+console.log(reverse(["Pepperoni", "bacon", "chilli", "mushrooms"]));
+reverse([1, 2, 3]);
